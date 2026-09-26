@@ -1,0 +1,14 @@
+! Configuracion de Puerto Espejo (SPAN) en Switch Cisco Catalyst
+! Redirige el trafico de las VLANs hacia la interfaz donde escucha el sensor Snort IDS
+
+configure terminal
+
+! 1. Definir las VLANs de origen a monitorizar (bidireccional)
+monitor session 1 source vlan 1 - 200 both
+
+! 2. Definir el puerto destino conectado a la interfaz de escucha del IDS Snort
+monitor session 1 destination interface GigabitEthernet1/35
+
+! 3. Validar estado de la sesion
+end
+show monitor session 1
